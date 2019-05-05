@@ -364,7 +364,7 @@ class Dataset(object):
         print("image_id = ",image_id)
 
         print("path = ", path)
-        path = path.replace("gs://bucket1cse/","code_for_gcp_job/trainer_f_rfcn")
+        path = path.replace("gs://bucket1cse/","code_for_gcp_job/trainer_f_rfcn/")
         image = skimage.io.imread(path)
         # If grayscale. Convert to RGB for consistency.
         if image.ndim != 3:
