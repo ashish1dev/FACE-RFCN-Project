@@ -78,8 +78,9 @@ if __name__ == '__main__':
 
     job_dir = "gs://bucket1cse/"
 
-    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt";
-    file1 =  job_dir + "WIDERFACE_DATA/WIDER_train/images/";
+    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
+    print(file)
+    file1 =  job_dir + "WIDERFACE_DATA/WIDER_train/images/"
     dataset_train =  Dataset(file, file1)
     config = RFCNNConfig()
 
@@ -90,7 +91,7 @@ if __name__ == '__main__':
     file2 =  job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt.txt"
     file3 =  job_dir + "WIDERFACE_DATA/WIDER_val/images/";
 
-    dataset_val = Dataset(file, file1)
+    dataset_val = Dataset(file2, file3)
 
 
     model = RFCN_Model(mode="training", config=config, model_dir=os.path.join(ROOT_DIR, "logs") )
