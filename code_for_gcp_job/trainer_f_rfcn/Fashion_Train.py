@@ -87,7 +87,8 @@ if __name__ == '__main__':
     config = RFCNNConfig()
 
     print("dataset_train = ")
-    print(dataset_train.dfb)
+    print((dataset_train.dfb.shape))
+    print(dataset_train.dfb['12847'])
 
     # Validation dataset
     # file2 =  r"E:\2nd Assignment\Final Project\wider_face_split\\"  + "wider_face_val_bbx_gt.txt"
