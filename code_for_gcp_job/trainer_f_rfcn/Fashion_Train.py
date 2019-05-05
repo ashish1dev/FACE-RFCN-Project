@@ -97,8 +97,8 @@ if __name__ == '__main__':
 
     model = RFCN_Model(mode="training", config=config, model_dir=os.path.join(ROOT_DIR, "logs") )
 
-    # dir = "/home/ashish/workspace/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
-    dir = "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
+    dir = "/home/ashish/workspace/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
+    # dir = "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
 
     # This is a hack, bacause the pre-train weights are not fit with dilated ResNet
     model.keras_model.load_weights(dir + "resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5", by_name=True, skip_mismatch=True)
