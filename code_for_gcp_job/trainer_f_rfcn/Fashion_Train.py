@@ -70,7 +70,7 @@ class RFCNNConfig(Config):
 ############################################################
 
 if __name__ == '__main__':
-    ROOT_DIR = os.getcwd()
+    ROOT_DIR = '' #os.getcwd()
     # file = r"E:\2nd Assignment\Final Project\wider_face_split\\" + "wider_face_train_bbx_gt.txt"
     # file1 = r"E:\2nd Assignment\Final Project\WIDER_train\images\\"
 
