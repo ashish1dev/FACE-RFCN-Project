@@ -479,7 +479,7 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             image, image_meta, gt_class_ids, gt_boxes = \
                 load_image_gt(dataset, config, image_id, augment=augment)
 
-            print(image, image_meta, gt_class_ids, gt_boxes)
+            # print(image, image_meta, gt_class_ids, gt_boxes)
             # Skip images that have no instances. This can happen in cases
             # where we train on a subset of classes and the image doesn't
             # have any of the classes we care about.
@@ -489,6 +489,8 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             rpn_match, rpn_bbox = build_rpn_targets(image, anchors,
                                                     gt_class_ids, gt_boxes, config)
 
+            print(rpn_match, rpn_bbox)
+            
             # Mask R-CNN Targets
             if random_rois:
                 rpn_rois = generate_random_rois(
