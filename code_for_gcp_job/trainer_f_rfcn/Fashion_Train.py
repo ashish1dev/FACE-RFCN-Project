@@ -77,12 +77,12 @@ if __name__ == '__main__':
     # img_path = '../WIDERFACE_DATA/WIDER_train/images/0--Parade/0_Parade_Parade_0_3.jpg'
 
     job_dir = "gs://bucket1cse/"
-    file = job_dir + "../WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
-    file1 =job_dir +  "../WIDERFACE_DATA/WIDER_train/images/"
+    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
+    file1 =job_dir +  "WIDERFACE_DATA/WIDER_train/images/"
 
     print("file1 = ")
     print(file1)
-    
+
     dataset_train =  Dataset(file, file1)
     config = RFCNNConfig()
 
@@ -90,8 +90,8 @@ if __name__ == '__main__':
     # Validation dataset
     # file2 =  r"E:\2nd Assignment\Final Project\wider_face_split\\"  + "wider_face_val_bbx_gt.txt"
     # file3 = r"E:\2nd Assignment\Final Project\WIDER_val\images\\"
-    file2 =job_dir +  "../WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt.txt"
-    file3 =job_dir +  "../WIDERFACE_DATA/WIDER_val/images/";
+    file2 =job_dir +  "WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt.txt"
+    file3 =job_dir +  "WIDERFACE_DATA/WIDER_val/images/";
     dataset_val = Dataset(file2, file3)
 
 
