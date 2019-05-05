@@ -250,11 +250,16 @@ class BaseModel(object):
         if layers in layer_regex.keys():
             layers = layer_regex[layers]
 
+        print("train_dataset : ")
         print(train_dataset)
 
         # Data generators
         train_generator = data_generator(train_dataset, self.config, shuffle=True,
                                          batch_size=self.config.BATCH_SIZE)
+
+        print("train_generator : ")
+        print(train_generator)
+
         val_generator = data_generator(val_dataset, self.config, shuffle=True,
                                        batch_size=self.config.BATCH_SIZE,
                                        augment=False)

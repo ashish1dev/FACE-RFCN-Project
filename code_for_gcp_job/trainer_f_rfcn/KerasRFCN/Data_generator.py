@@ -489,8 +489,8 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             rpn_match, rpn_bbox = build_rpn_targets(image, anchors,
                                                     gt_class_ids, gt_boxes, config)
 
-            print(rpn_match, rpn_bbox)
-            
+            # print(rpn_match, rpn_bbox)
+
             # Mask R-CNN Targets
             if random_rois:
                 rpn_rois = generate_random_rois(
