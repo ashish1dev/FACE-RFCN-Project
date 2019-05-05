@@ -1,0 +1,2 @@
+# Don't track content of these folders
+code_for_gcp_job/trainer_f_rfcn/WIDERFACE_DATA/

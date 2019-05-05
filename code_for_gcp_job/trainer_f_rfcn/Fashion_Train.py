@@ -70,13 +70,13 @@ class RFCNNConfig(Config):
 ############################################################
 
 if __name__ == '__main__':
-    ROOT_DIR = 'gs://bucket1cse/' #os.getcwd()
+    ROOT_DIR = "code_for_gcp_job/trainer_f_rfcn/" #'gs://bucket1cse/' #os.getcwd()
     # file = r"E:\2nd Assignment\Final Project\wider_face_split\\" + "wider_face_train_bbx_gt.txt"
     # file1 = r"E:\2nd Assignment\Final Project\WIDER_train\images\\"
 
     # img_path = '../WIDERFACE_DATA/WIDER_train/images/0--Parade/0_Parade_Parade_0_3.jpg'
 
-    job_dir = "gs://bucket1cse/"
+    job_dir = "code_for_gcp_job/trainer_f_rfcn/" # "gs://bucket1cse/"
     file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
     file1 = job_dir +  "WIDERFACE_DATA/WIDER_train/images/"
 
@@ -97,7 +97,9 @@ if __name__ == '__main__':
 
     model = RFCN_Model(mode="training", config=config, model_dir=os.path.join(ROOT_DIR, "logs") )
 
-    dir = "/home/ashish/workspace/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
+    # dir = "/home/ashish/workspace/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
+    dir = "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
+
     # This is a hack, bacause the pre-train weights are not fit with dilated ResNet
     model.keras_model.load_weights(dir + "resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5", by_name=True, skip_mismatch=True)
 
