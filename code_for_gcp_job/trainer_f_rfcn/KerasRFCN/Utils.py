@@ -362,6 +362,8 @@ class Dataset(object):
         path = filepath  + image_id
         print("filepath = ",filepath)
         print("image_id = ",image_id)
+
+        print("path = ", path)
         image = skimage.io.imread(path)
         # If grayscale. Convert to RGB for consistency.
         if image.ndim != 3:
