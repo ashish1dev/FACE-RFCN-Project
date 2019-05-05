@@ -250,6 +250,8 @@ class BaseModel(object):
         if layers in layer_regex.keys():
             layers = layer_regex[layers]
 
+        print(train_dataset)
+
         # Data generators
         train_generator = data_generator(train_dataset, self.config, shuffle=True,
                                          batch_size=self.config.BATCH_SIZE)
@@ -280,7 +282,7 @@ class BaseModel(object):
         else:
             workers = max(self.config.BATCH_SIZE // 2, 2)
 
-        # 
+        #
         # self.keras_model.fit_generator(
         #     train_generator,
         #     initial_epoch=self.epoch,
