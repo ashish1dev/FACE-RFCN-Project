@@ -86,6 +86,8 @@ if __name__ == '__main__':
     dataset_train =  Dataset(file, file1)
     config = RFCNNConfig()
 
+    print("dataset_train = ")
+    print(dataset_train)
 
     # Validation dataset
     # file2 =  r"E:\2nd Assignment\Final Project\wider_face_split\\"  + "wider_face_val_bbx_gt.txt"
