@@ -40,10 +40,10 @@ def load_image_gt(dataset, config, image_id , augment=False):
         max_dim= config.IMAGE_MAX_DIM,
         padding=config.IMAGE_PADDING)
     bboxes = KerasRFCN.Utils.resize_bbox(bboxes, scale, padding)
-    
+
     #######
     # img_h, img_w, img_c = image.shape
-    
+
     # Random horizontal flips.
     # TODO: data-augment:fliplr the bbox coordinate
     # if augment:
@@ -52,7 +52,7 @@ def load_image_gt(dataset, config, image_id , augment=False):
     #         bboxes = bbox_fliplr(bboxes, height, width)
 
     # Bounding boxes. Note that some boxes might be all zeros
-    num_classes =2 
+    num_classes =2
     # Active classes
     # Different datasets have different classes, so track the
     # classes supported in the dataset of this image.
@@ -95,7 +95,7 @@ def build_detection_targets(rpn_rois, gt_class_ids, gt_boxes, config):
     instance_ids = np.where(gt_class_ids > 0)[0]
     assert instance_ids.shape[0] > 0, "Image must contain instances."
     gt_class_ids = gt_class_ids[instance_ids]
-    
+
 
     # Compute areas of ROIs and ground truth boxes.
     rpn_roi_area = (rpn_rois[:, 2] - rpn_rois[:, 0]) * \
@@ -258,7 +258,7 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
     ids_ = np.where(rpn_match == -1)[0]
     extra_ = len(ids_) - (config.RPN_TRAIN_ANCHORS_PER_IMAGE -
                         np.sum(rpn_match == 1))
-    
+
     if extra_ > 0:
         # Rest the extra ones to neutral
         ids_ = np.random.choice(ids_, extra_, replace=False)
@@ -270,8 +270,8 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
     ids_ = np.where(rpn_match == -1)[0]
     ix = 0  # index into rpn_bbox
     # TODO: use box_refinment() rather than duplicating the code here
-    
-   
+
+
     dpi = 80
     # img_ = img.split("/")[1]
     # im_data = plt.imread(img_)
@@ -281,8 +281,8 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
     ax = fig.add_axes([0, 0, 1, 1])
     ax.axis('off')
     ax.imshow(image, interpolation='nearest')
-    
-    
+
+
 
     for i, a, i_,a_ in zip(ids, anchors[ids],ids_, anchors[ids_]):
         # Closest gt box (it might have IoU < 0.7)
@@ -295,14 +295,14 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
         gt_center_y = gt[0] + 0.5 * gt_h
         gt_center_x = gt[1] + 0.5 * gt_w
 
-        
+
 
         p = patches.Rectangle((gt[1], gt[0]),gt_w, gt_h, linewidth=4, alpha=0.7,
                           edgecolor="yellow", facecolor='none')
         ax.add_patch(p)
-        
-        
-       
+
+
+
 
         # +ve Anchor
         a_h = a[2] - a[0]
@@ -314,23 +314,23 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
         p = patches.Rectangle((a[1], a[0]),a_w,a_h, linewidth=2, alpha=0.7,
                           edgecolor="blue", facecolor='none')
         ax.add_patch(p)
-        
-        
-        
-        
+
+
+
+
         ###############################
         # -ve Anchor
         # a_h_ = a_[2] - a_[0]
         # a_w_ = a_[3] - a_[1]
         # a_center_y_ = a_[0] + 0.5 * a_h_
         # a_center_x_ = a_[1] + 0.5 * a_w_
-    
-        
+
+
 
         # p = patches.Rectangle((a_[1], a_[0]), a_w_, a_h_, linewidth=2, alpha=0.7,
         #                   edgecolor="red", facecolor='none')
         # ax.add_patch(p)
-         
+
 
 
         # Compute the bbox refinement that the RPN should predict.
@@ -340,12 +340,12 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
             np.log(gt_h / a_h),
             np.log(gt_w / a_w),
         ]
-        
-        
+
+
         # Normalize
         rpn_bbox[ix] /= config.RPN_BBOX_STD_DEV
         ix += 1
-        
+
     return rpn_match, rpn_bbox
 
 
@@ -465,9 +465,9 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
                                              config.BACKBONE_SHAPES,
                                              config.BACKBONE_STRIDES,
                                              config.RPN_ANCHOR_STRIDE)
-        
-    
-    
+
+
+
     # Keras requires a generator to run indefinately.
     while True:
         try:
@@ -479,10 +479,11 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             image, image_meta, gt_class_ids, gt_boxes = \
                 load_image_gt(dataset, config, image_id, augment=augment)
 
+            print(image, image_meta, gt_class_ids, gt_boxes)
             # Skip images that have no instances. This can happen in cases
             # where we train on a subset of classes and the image doesn't
             # have any of the classes we care about.
-            
+
 
             # RPN Targets
             rpn_match, rpn_bbox = build_rpn_targets(image, anchors,
