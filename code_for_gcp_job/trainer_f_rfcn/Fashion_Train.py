@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     print("dataset_train = ")
     print((dataset_train.dfb.shape))
-    print(dataset_train.dfb[0])
+    # print(dataset_train.dfb[0])
 
     # Validation dataset
     # file2 =  r"E:\2nd Assignment\Final Project\wider_face_split\\"  + "wider_face_val_bbx_gt.txt"
