@@ -225,8 +225,10 @@ class Dataset(object):
         self.file = file
         self.file1 = file1
         self.sample = {}
-        
+
         filepath = self.file
+        print("filepath = ")
+        print(filepath)
         gt_files = pd.read_csv(filepath, header = None)
         files = gt_files[gt_files[0].str.contains('.jpg')].reset_index(drop=True)
         num_bbx = gt_files[gt_files[0].apply(lambda x: len(x) <= 4)].reset_index(drop=True).astype(int)
@@ -234,12 +236,12 @@ class Dataset(object):
         data = pd.DataFrame(data = np.concatenate((files.values,num_bbx.values),axis=1))
         df = data[data[1] != 0].reset_index(drop = True)
         self.dfb = df
-            
+
         index = 0
         for i,j in zip(files[0], num_bbx[0]):
             if j == 0:
                 index = index  + j + 1
-            else: 
+            else:
                 points = gth[0][index:index + j].reset_index(drop=True)
                 self.sample[i] = points
                 index = index  + j
@@ -377,17 +379,17 @@ class Dataset(object):
             class_ids: a 1D array of class IDs of the instance bbox.
         """
         # Override this function to load a bbox from your dataset.
-        # Otherwise, it returns an empty bbox. 
+        # Otherwise, it returns an empty bbox.
 
-        
+
         bbx_ = self.sample[image_id]
         bx = []
         for i in bbx_:
             bx.append([int(j) for j in i.split()[:4]])
         bbx = pd.DataFrame(bx, dtype = 'int')
-        y1, x1, y2, x2 = bbx[1], bbx[0], bbx[1] + bbx[3], bbx[0] + bbx[2] 
-        gt_box = np.stack((y1,x1,y2,x2)).T 
-        
+        y1, x1, y2, x2 = bbx[1], bbx[0], bbx[1] + bbx[3], bbx[0] + bbx[2]
+        gt_box = np.stack((y1,x1,y2,x2)).T
+
 
         class_ids = np.array([len(gt_box)])
         return gt_box, class_ids
