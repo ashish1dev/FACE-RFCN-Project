@@ -360,6 +360,8 @@ class Dataset(object):
         # Load image
         filepath = self.file1
         path = filepath  + image_id
+        print("filepath = ",filepath)
+        print("image_id = ",image_id)
         image = skimage.io.imread(path)
         # If grayscale. Convert to RGB for consistency.
         if image.ndim != 3:
