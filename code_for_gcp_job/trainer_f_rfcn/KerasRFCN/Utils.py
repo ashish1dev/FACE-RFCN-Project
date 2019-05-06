@@ -360,8 +360,8 @@ class Dataset(object):
         # Load image
         filepath = self.file1
         path = filepath  + image_id
-        print("filepath = ",filepath)
-        print("image_id = ",image_id)
+        # print("filepath = ",filepath)
+        # print("image_id = ",image_id)
 
 
         path = path.replace("gs://bucket1cse/","code_for_gcp_job/trainer_f_rfcn/")
