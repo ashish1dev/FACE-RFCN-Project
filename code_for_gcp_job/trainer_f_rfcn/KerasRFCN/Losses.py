@@ -90,6 +90,15 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
         classes that are in the dataset of the image, and 0
         for classes that are not in the dataset.
     """
+    print("target_class_ids = ")
+    print(target_class_ids)
+
+    print("active_class_ids = ")
+    print(active_class_ids)
+
+    print("pred_class_logits = ")
+    print(pred_class_logits)
+
     target_class_ids = tf.cast(target_class_ids, 'int64')
 
     # Find predictions of classes that are not in the dataset.
