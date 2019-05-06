@@ -565,8 +565,8 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
                             [batch_mrcnn_class_ids, batch_mrcnn_bbox])
 
 
-                print("input = ")
-                print(input)
+                print("inputs = ")
+                print(inputs)
                 yield inputs, outputs
 
                 # start a new batch
