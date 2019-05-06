@@ -17,7 +17,7 @@ Written by parap1uie-s@github.com
 #  Data Generator
 ############################################################
 
-def load_image_gt(dataset, config, image_id , augment=False):
+def load_image_gt(dataset, config, image_id , image_index, augment=False):
     """Load and return ground truth data for an image (image, mask, bounding boxes).
 
     augment: If true, apply random image augmentation. Currently, only
@@ -69,7 +69,8 @@ def load_image_gt(dataset, config, image_id , augment=False):
     print("active_class_ids = ")
     print(active_class_ids)
     # Image meta data
-    image_meta = compose_image_meta(image_id, shape, window, active_class_ids)
+    # image_meta = compose_image_meta(image_id, shape, window, active_class_ids)
+    image_meta = compose_image_meta(image_index, shape, window, active_class_ids)
     # image_meta = compose_image_meta(image, shape, window, active_class_ids)
 
     return image, image_meta, class_ids, bboxes
@@ -486,7 +487,7 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             # Get GT bounding boxes for image.
             image_id = df.iloc[image_index][0]
             image, image_meta, gt_class_ids, gt_boxes = \
-                load_image_gt(dataset, config, image_id, augment=augment)
+                load_image_gt(dataset, config, image_id, image_index, augment=augment)
 
             # print("image = ")
             # print(image)
