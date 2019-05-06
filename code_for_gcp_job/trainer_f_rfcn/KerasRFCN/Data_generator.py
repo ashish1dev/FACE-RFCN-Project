@@ -479,6 +479,9 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             image, image_meta, gt_class_ids, gt_boxes = \
                 load_image_gt(dataset, config, image_id, augment=augment)
 
+            print("image_meta = ")
+            print(image_meta)
+
             # print(image, image_meta, gt_class_ids, gt_boxes)
             # Skip images that have no instances. This can happen in cases
             # where we train on a subset of classes and the image doesn't
@@ -565,18 +568,18 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
                             [batch_mrcnn_class_ids, batch_mrcnn_bbox])
 
 
-                print("inputs[0] = ")
-                print(inputs[0])
-                print("inputs[1] = ")
-                print(inputs[1])
-                print("inputs[2] = ")
-                print(inputs[2])
-                print("inputs[3] = ")
-                print(inputs[3])
-                print("inputs[4] = ")
-                print(inputs[4])
-                print("inputs[5] = ")
-                print(inputs[5])
+                # print("inputs[0] = ")
+                # print(inputs[0])
+                # print("inputs[1] = ")
+                # print(inputs[1])
+                # print("inputs[2] = ")
+                # print(inputs[2])
+                # print("inputs[3] = ")
+                # print(inputs[3])
+                # print("inputs[4] = ")
+                # print(inputs[4])
+                # print("inputs[5] = ")
+                # print(inputs[5])
                 yield inputs, outputs
 
                 # start a new batch
