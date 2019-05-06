@@ -564,6 +564,8 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
                         outputs.extend(
                             [batch_mrcnn_class_ids, batch_mrcnn_bbox])
 
+
+                print(input)
                 yield inputs, outputs
 
                 # start a new batch
