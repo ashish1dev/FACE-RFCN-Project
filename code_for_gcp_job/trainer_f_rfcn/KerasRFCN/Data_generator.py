@@ -567,6 +567,10 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
 
                 print("inputs[0] = ")
                 print(inputs[0])
+                print("inputs[1] = ")
+                print(inputs[1])
+                print("inputs[2] = ")
+                print(inputs[2])
                 yield inputs, outputs
 
                 # start a new batch
