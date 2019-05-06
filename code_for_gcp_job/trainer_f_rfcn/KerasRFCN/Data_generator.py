@@ -69,7 +69,8 @@ def load_image_gt(dataset, config, image_id , augment=False):
     print("active_class_ids = ")
     print(active_class_ids)
     # Image meta data
-    image_meta = compose_image_meta(image_id, shape, window, active_class_ids)
+    # image_meta = compose_image_meta(image_id, shape, window, active_class_ids)
+    image_meta = compose_image_meta(image, shape, window, active_class_ids)
 
     return image, image_meta, class_ids, bboxes
 
