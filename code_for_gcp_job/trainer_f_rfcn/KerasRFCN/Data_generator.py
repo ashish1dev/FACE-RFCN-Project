@@ -60,6 +60,14 @@ def load_image_gt(dataset, config, image_id , augment=False):
     # source_class_ids = dataset.source_class_ids[dataset.image_info[image_id]["source"]]
     active_class_ids = '1'
 
+    print("image_id = " )
+    print(image_id )
+    print("shape = ")
+    print(shape)
+    print("window = ")
+    print(window)
+    print("active_class_ids = ")
+    print(active_class_ids)
     # Image meta data
     image_meta = compose_image_meta(image_id, shape, window, active_class_ids)
 
@@ -479,9 +487,9 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             image, image_meta, gt_class_ids, gt_boxes = \
                 load_image_gt(dataset, config, image_id, augment=augment)
 
-            print("image = ")
-            print(image)
-
+            # print("image = ")
+            # print(image)
+            #
             print("image_meta = ")
             print(image_meta)
 
