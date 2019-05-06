@@ -479,6 +479,9 @@ def data_generator(dataset, config, shuffle=True, augment=True, random_rois=0,
             image, image_meta, gt_class_ids, gt_boxes = \
                 load_image_gt(dataset, config, image_id, augment=augment)
 
+            print("image = ")
+            print(image)
+
             print("image_meta = ")
             print(image_meta)
 
