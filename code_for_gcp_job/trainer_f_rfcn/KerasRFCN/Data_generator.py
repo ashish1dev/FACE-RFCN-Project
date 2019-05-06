@@ -6,6 +6,9 @@ import logging
 import KerasRFCN.Utils
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+
+plt.rcParams.update({'figure.max_open_warning': 0})
+
 """
 Keras RFCN
 Copyright (c) 2018
