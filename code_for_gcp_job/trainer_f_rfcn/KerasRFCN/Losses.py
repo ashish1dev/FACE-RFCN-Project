@@ -90,15 +90,6 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
         classes that are in the dataset of the image, and 0
         for classes that are not in the dataset.
     """
-    print("target_class_ids = ")
-    print(target_class_ids)
-
-    print("active_class_ids = ")
-    print(active_class_ids)
-
-    print("pred_class_logits = ")
-    print(pred_class_logits)
-
     target_class_ids = tf.cast(target_class_ids, 'int64')
 
     # Find predictions of classes that are not in the dataset.
@@ -110,6 +101,13 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     # Loss
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
         labels=target_class_ids, logits=pred_class_logits)
+
+    ## code added by Team (Ashish / Mohna)
+    N = 100 # read top N negative ROIs
+    # Sorting list of Integers in descending
+    loss = loss.sort(reverse = True)
+    #select top N
+    loss = loss[:N]
 
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
@@ -143,6 +141,10 @@ def mrcnn_bbox_loss_graph(target_bbox, target_class_ids, pred_bbox):
     # Gather the deltas (predicted and true) that contribute to loss
     target_bbox = tf.gather(target_bbox, positive_roi_ix)
     pred_bbox = tf.gather_nd(pred_bbox, indices)
+
+
+
+
 
     # Smooth-L1 Loss
     loss = K.switch(tf.size(target_bbox) > 0,
