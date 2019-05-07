@@ -287,16 +287,7 @@ class BaseModel(object):
         else:
             workers = max(self.config.BATCH_SIZE // 2, 2)
 
-        #
-        # self.keras_model.fit_generator(
-        #     train_generator,
-        #     initial_epoch=self.epoch,
-        #     epochs=epochs,
-        #     steps_per_epoch=self.config.STEPS_PER_EPOCH,
-        #     callbacks=callbacks,
-        #     validation_data=next(val_generator)
-        # )
-        #
+
         self.keras_model.fit_generator(
             train_generator,
             initial_epoch=self.epoch,
@@ -305,10 +296,22 @@ class BaseModel(object):
             callbacks=callbacks,
             validation_data=next(val_generator),
             validation_steps=self.config.VALIDATION_STEPS,
-            max_queue_size=100,
-            workers=4,
-            use_multiprocessing=True
+            max_queue_size=100
         )
+
+        # self.keras_model.fit_generator(
+        #     train_generator,
+        #     initial_epoch=self.epoch,
+        #     epochs=epochs,
+        #     steps_per_epoch=self.config.STEPS_PER_EPOCH,
+        #     callbacks=callbacks,
+        #     validation_data=next(val_generator),
+        #     validation_steps=self.config.VALIDATION_STEPS,
+        #     max_queue_size=100,
+        #     workers=4,
+        #     use_multiprocessing=True
+        # )
+        
         self.epoch = max(self.epoch, epochs)
 
     def detect(self, images, verbose=0):
