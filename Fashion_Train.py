@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     job_dir = "" #"../code_for_gcp_job/trainer_f_rfcn/" # "gs://bucket1cse/"
     # file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
-    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt_mini2.txt"
+    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt_mini.txt"
     file1 = job_dir +  "WIDERFACE_DATA/WIDER_train/images/"
 
 
@@ -87,15 +87,15 @@ if __name__ == '__main__':
     # Validation dataset
     # file2 =  r"E:\2nd Assignment\Final Project\wider_face_split\\"  + "wider_face_val_bbx_gt_mini.txt"
     # file3 = r"E:\2nd Assignment\Final Project\WIDER_val\images\\"
-    file2 = job_dir +  "WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt_mini2.txt"
+    file2 = job_dir +  "WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt_mini.txt"
     file3 = job_dir +  "WIDERFACE_DATA/WIDER_val/images/";
     dataset_val = Dataset(file2, file3)
 
 
     model = RFCN_Model(mode="training", config=config, model_dir=os.path.join(ROOT_DIR, "logs") )
 
-    dir = "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
-
+    #dir = "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/FACE-RFCN-Project/code_for_gcp_job/trainer_f_rfcn/"
+    dir = ""
     # This is a hack, bacause the pre-train weights are not fit with dilated ResNet
     model.keras_model.load_weights(dir+"resnet50_weights_tf_dim_ordering_tf_kernels.h5", by_name=True, skip_mismatch=True)
 
