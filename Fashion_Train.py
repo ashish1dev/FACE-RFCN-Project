@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     job_dir = "" #"../code_for_gcp_job/trainer_f_rfcn/" # "gs://bucket1cse/"
     # file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
-    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt_mini.txt"
+    file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"
     file1 = job_dir +  "WIDERFACE_DATA/WIDER_train/images/"
 
 
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     # Validation dataset
     # file2 =  r"E:\2nd Assignment\Final Project\wider_face_split\\"  + "wider_face_val_bbx_gt_mini.txt"
     # file3 = r"E:\2nd Assignment\Final Project\WIDER_val\images\\"
-    file2 = job_dir +  "WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt_mini.txt"
+    file2 = job_dir +  "WIDERFACE_DATA/wider_face_split/" + "wider_face_val_bbx_gt.txt"
     file3 = job_dir +  "WIDERFACE_DATA/WIDER_val/images/";
     dataset_val = Dataset(file2, file3)
 
