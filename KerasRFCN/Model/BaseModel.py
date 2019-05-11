@@ -23,7 +23,7 @@ class BaseModel(object):
     """docstring for BaseModel"""
     def __init__(self, arg):
         super(BaseModel, self).__init__()
-        self.arg = arg    
+        self.arg = arg
 
     def find_last(self):
         """Finds the last checkpoint file of the last trained model in the
@@ -259,7 +259,7 @@ class BaseModel(object):
         # Callbacks
         callbacks = [
             keras.callbacks.TensorBoard(log_dir=self.log_dir,
-                                        histogram_freq=0, write_graph=True, write_images=False),
+                                        histogram_freq=0, write_graph=True, write_images=True),
             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
                                             verbose=0, save_weights_only=True, save_best_only=True),
             keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.01, patience=10, verbose=1, mode='auto', min_delta=0.001, min_lr=0)
@@ -288,7 +288,7 @@ class BaseModel(object):
             validation_data=next(val_generator),
             validation_steps=self.config.VALIDATION_STEPS,
             max_queue_size=100,
-            
+
         ) # Should be True but setting here 1
         # workers=0,
         #     use_multiprocessing= False,
