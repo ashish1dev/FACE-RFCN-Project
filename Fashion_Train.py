@@ -112,7 +112,7 @@ if __name__ == '__main__':
     print("Training on all layers")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=1,
+                epochs=25,
                 layers='all')
 
     # # Training - Stage 1
