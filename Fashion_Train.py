@@ -109,32 +109,38 @@ if __name__ == '__main__':
 
     # *** This training schedule is an example. Update to your needs ***
 
-    # Training - Stage 1
+    print("Training on all layers")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
-                epochs=20,
-                layers='heads')
-
-    # Training - Stage 2
-    # Finetune layers from ResNet stage 4 and up
-    print("Fine tune Resnet stage 4 and up")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE,
-                epochs=40,
-                layers='4+')
-
-    # Training - Stage 3
-    # Fine tune all layers
-    print("Fine tune all layers")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE,
-                epochs=80,
+                epochs=30,
                 layers='all')
 
-    # Training - Stage 3
-    # Fine tune all layers
-    print("Fine tune all layers")
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE,
-                epochs=240,
-                layers='all')
+    # # Training - Stage 1
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE,
+    #             epochs=20,
+    #             layers='heads')
+    #
+    # # Training - Stage 2
+    # # Finetune layers from ResNet stage 4 and up
+    # print("Fine tune Resnet stage 4 and up")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE,
+    #             epochs=40,
+    #             layers='4+')
+    #
+    # # Training - Stage 3
+    # # Fine tune all layers
+    # print("Fine tune all layers")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE,
+    #             epochs=80,
+    #             layers='all')
+    #
+    # # Training - Stage 3
+    # # Fine tune all layers
+    # print("Fine tune all layers")
+    # model.train(dataset_train, dataset_val,
+    #             learning_rate=config.LEARNING_RATE,
+    #             epochs=240,
+    #             layers='all')
