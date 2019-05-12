@@ -48,6 +48,8 @@ class BaseModel(object):
         if not checkpoints:
             return dir_name, None
         checkpoint = os.path.join(dir_name, checkpoints[-1])
+        print("dir_name = ", dir_name)
+        print("checkpoint = ",checkpoint)
         return dir_name, checkpoint
 
     def load_weights(self, filepath, by_name=False, exclude=None):

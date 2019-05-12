@@ -339,14 +339,15 @@ def build_rpn_targets(image, anchors, gt_class_ids, gt_boxes, config):
 
 
         # Compute the bbox refinement that the RPN should predict.
-        if(a_h != 0 and a_w != 0):
+        if(a_h > 0 and a_w > 0):
             rpn_bbox[ix] = [
                 (gt_center_y - a_center_y) / a_h,
                 (gt_center_x - a_center_x) / a_w,
                 np.log(gt_h / a_h),
                 np.log(gt_w / a_w),
             ]
-
+        else:
+            rpn_bbox[ix] = rpn_bbox[ix-1]
 
         # Normalize
         rpn_bbox[ix] /= config.RPN_BBOX_STD_DEV
