@@ -264,7 +264,7 @@ class BaseModel(object):
                                         histogram_freq=0, write_graph=True, write_images=True),
             keras.callbacks.ModelCheckpoint(self.checkpoint_path,
                                             verbose=0, save_weights_only=True, save_best_only=True),
-            keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.01, patience=10, verbose=1, mode='auto', min_delta=0.001, min_lr=0)
+            keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.01, patience=2, verbose=1, mode='auto', min_delta=0.001, min_lr=0)
         ]
 
         # Train
