@@ -106,7 +106,7 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     N = 100 # read top N negative ROIs
     # Sorting list of Integers in descending
     # loss = tf.cast(loss, tf.float32)
-    loss = tf.to_float(loss)
+    # loss = tf.to_float(loss)
     loss = tf.nn.top_k(loss, N)
     #select top N
     # loss = loss[:N]
@@ -114,8 +114,6 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
     # loss = tf.cast(loss, tf.int32)
-    print(loss.shape)
-    print(pred_active.shape)
     loss = loss * pred_active
 
     # Computer loss mean. Use only predictions that contribute
