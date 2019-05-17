@@ -105,6 +105,8 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     ## code added by Team (Ashish / Mohna)
     N = 100 # read top N negative ROIs
     # Sorting list of Integers in descending
+    # loss = tf.cast(loss, tf.float32)
+    loss = tf.to_float(loss)
     loss = tf.nn.top_k(loss, N)
     #select top N
     # loss = loss[:N]
@@ -115,8 +117,6 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
 
     # Computer loss mean. Use only predictions that contribute
     # to the loss to get a correct mean.
-    # loss = tf.cast(loss, tf.float32)
-    loss = tf.to_float(loss)
     loss = tf.reduce_sum(loss) / tf.reduce_sum(pred_active)
     return loss
 
