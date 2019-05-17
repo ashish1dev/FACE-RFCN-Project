@@ -103,6 +103,7 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
         labels=target_class_ids, logits=pred_class_logits)
     print(loss)
     print(loss.shape)
+    print(len(loss))
     # print(len(loss))
     ## code added by Team (Ashish / Mohna)
     N = 100 # read top N negative ROIs
