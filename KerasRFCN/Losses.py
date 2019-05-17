@@ -11,9 +11,6 @@ import keras.backend as K
 #  Loss Functions
 ############################################################
 
-
-
-
 def smooth_l1_loss(y_true, y_pred):
     """Implements Smooth-L1 loss.
     y_true and y_pred are typicallly: [N, 4], but could be any shape.
@@ -32,11 +29,9 @@ def rpn_class_loss_graph(rpn_match, rpn_class_logits):
     rpn_class_logits: [batch, anchors, 2]. RPN classifier logits for FG/BG.
     """
     # Squeeze last dim to simplify
-
     rpn_match = tf.squeeze(rpn_match, -1)
     # Get anchor classes. Convert the -1/+1 match to 0/1 values.
     anchor_class = K.cast(K.equal(rpn_match, 1), tf.int32)
-
     # Positive and Negative anchors contribute to the loss,
     # but neutral anchors (match value = 0) don't.
     indices = tf.where(K.not_equal(rpn_match, 0))
@@ -95,7 +90,6 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
         classes that are in the dataset of the image, and 0
         for classes that are not in the dataset.
     """
-
     target_class_ids = tf.cast(target_class_ids, 'int64')
 
     # Find predictions of classes that are not in the dataset.
@@ -107,6 +101,13 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     # Loss
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
         labels=target_class_ids, logits=pred_class_logits)
+
+    ## code added by Team (Ashish / Mohna)
+    N = 100 # read top N negative ROIs
+    # Sorting list of Integers in descending
+    loss = tf.nn.top_k(loss, N)
+    #select top N
+    # loss = loss[:N]
 
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
@@ -140,6 +141,10 @@ def mrcnn_bbox_loss_graph(target_bbox, target_class_ids, pred_bbox):
     # Gather the deltas (predicted and true) that contribute to loss
     target_bbox = tf.gather(target_bbox, positive_roi_ix)
     pred_bbox = tf.gather_nd(pred_bbox, indices)
+
+
+
+
 
     # Smooth-L1 Loss
     loss = K.switch(tf.size(target_bbox) > 0,
