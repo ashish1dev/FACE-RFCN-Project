@@ -113,7 +113,9 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
 
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
-    loss = tf.cast(loss, tf.int32)
+    # loss = tf.cast(loss, tf.int32)
+    print(loss.shape)
+    print(pred_active.shape)
     loss = loss * pred_active
 
     # Computer loss mean. Use only predictions that contribute
