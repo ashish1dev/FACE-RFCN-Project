@@ -100,7 +100,7 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
 
     print("pred_class_ids = ")
     print(pred_class_ids)
-    print(len(pred_class_ids))
+    print((pred_class_ids.shape))
     # Loss
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
         labels=target_class_ids, logits=pred_class_logits)
