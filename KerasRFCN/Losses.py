@@ -107,14 +107,16 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     # print(len(loss))
     ## code added by Team (Ashish / Mohna)
     N = 100 # read top N negative ROIs
-    # Sorting list of Integers in descending
+    # Sorting TENSOR of losses in descending
     # loss = tf.cast(loss, tf.float32)
     # loss = tf.to_float(loss)
 
+    OHEMLosses = tf.Variable(0, name='OHEMLosses')
     topNloss = tf.nn.top_k(loss, N)
     lastNloss = loss[-N:]
-    print((topNloss.shape))
-    print((lastNloss.shape))
+    OHEMLosses = tf.concat([topNloss, lastNloss], 0)
+    print(len(OHEMLosses))
+    print((OHEMLosses.shape))
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
     loss = loss * pred_active
