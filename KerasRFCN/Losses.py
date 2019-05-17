@@ -115,7 +115,7 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
 
     # Computer loss mean. Use only predictions that contribute
     # to the loss to get a correct mean.
-    loss = tf.cast(loss, tf.float32)
+    loss = tf.cast(loss, tf.int32)
     loss = tf.reduce_sum(loss) / tf.reduce_sum(pred_active)
     return loss
 
