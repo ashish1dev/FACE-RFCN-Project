@@ -113,8 +113,8 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
 
     topNloss = tf.nn.top_k(loss, N)
     lastNloss = loss[-N:]
-    print(len(topNloss))
-    print(len(lastNloss))
+    print(len(topNloss.shape))
+    print((lastNloss.shape))
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
     loss = loss * pred_active
