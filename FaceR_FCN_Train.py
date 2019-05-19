@@ -71,8 +71,6 @@ class RFCNNConfig(Config):
 
 if __name__ == '__main__':
     ROOT_DIR = os.getcwd()
-    # file = r"E:\2nd Assignment\Final Project\wider_face_split\\" + "wider_face_train_bbx_gt_mini.txt"
-    # file1 = r"E:\2nd Assignment\Final Project\WIDER_train\images\\"
 
     job_dir = "" #"../code_for_gcp_job/trainer_f_rfcn/" # "gs://bucket1cse/"
     # file = job_dir + "WIDERFACE_DATA/wider_face_split/" + "wider_face_train_bbx_gt.txt"

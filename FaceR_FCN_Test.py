@@ -136,11 +136,13 @@ if __name__ == '__main__':
     config = RFCNNConfig()
     args = parser.parse_args()
 
+    modelPath = "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/results/"
+
     # model = RFCN_Model(mode="inference", config=config,
     #                   model_dir=os.path.join(ROOT_DIR, "logs") )
     model = RFCN_Model(mode="inference", config=config,
-                        model_dir="/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/results/" )
+                        model_dir= modelPath)
 
     # Test(model, args.loadpath, args.savepath)
     loadpath = "images/"
-    Test(model, loadpath, "/Users/ashish/workspace/ub_coursework/second_semester/Biometrics_and_Image_Analysis/Project/FACE-RFCN-Project/result/")
+    Test(model, loadpath, modelPath)

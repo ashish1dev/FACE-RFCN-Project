@@ -98,9 +98,7 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     #       images in a batch have the same active_class_ids
     pred_active = tf.gather(active_class_ids[0], pred_class_ids)
 
-    print("pred_class_ids = ")
-    print(pred_class_ids)
-    print((pred_class_ids.shape))
+
     # Loss
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
         labels=target_class_ids, logits=pred_class_logits)
@@ -109,14 +107,14 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     ## code added by Team (Ashish / Mohna)
     N = 100 # read top N negative ROIs
     # Sorting TENSOR of losses in descending
-    # loss = tf.cast(loss, tf.float32)
-    # loss = tf.to_float(loss)
 
     # loss = tf.nn.top_k(loss, 100)
 
     # Erase losses of predictions of classes that are not in the active
     # classes of the image.
     loss = loss * pred_active
+    bottom_k = lambda x: -tf.nn.top_k(-x)
+    indices = tf.where(loss > 30)
 
     # Computer loss mean. Use only predictions that contribute
     # to the loss to get a correct mean.
